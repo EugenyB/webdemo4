@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Группы</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputLabel value="Новая группа"/>
+            <h:inputText value="#{groupBean.group.title}"/>
+            <h:commandButton value="Добавить" action="#{groupBean.add()}" styleClass="btn btn-primary"/>
+        </h:form>
+        <h:form>
+        <h:dataTable value="#{groupBean.groups}" var="g" styleClass="table table-striped" headerClass="thead-dark">
+            <h:column>
+                <f:facet name="header">№</f:facet>
+                #{g.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Группа</f:facet>
+                #{g.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">X</f:facet>
+                <h:commandButton value="Delete" action="#{groupBean.delete(g)}" styleClass="btn btn-danger"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">E</f:facet>
+                <h:commandButton value="Edit" action="#{groupBean.edit(g)}" styleClass="btn btn-warning"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Студенты</f:facet>
+                <h:commandButton value="Показать" action="#{groupBean.showStudents(g)}" styleClass="btn btn-info"/>
+            </h:column>
+        </h:dataTable>
+        </h:form>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    </h:body>
+</f:view>
+</html>
